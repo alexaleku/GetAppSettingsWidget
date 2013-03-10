@@ -18,7 +18,7 @@ public class Main extends AppWidgetProvider {
 	for(int i=0; i<appWidgetIds.length; i++) {
 	int widgetID = appWidgetIds[i];
 		
-//	77777	int appWidgetId = 0;
+//ertterth	int appWidgetId = 0;
 		
 	
 	
