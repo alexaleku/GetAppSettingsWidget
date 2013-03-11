@@ -21,7 +21,7 @@ public class Main extends AppWidgetProvider {
 //ertterth	int appWidgetId = 0;
 		
 	
-	
+	// kmkooooknonk
 	
 		Intent intent = new Intent(context, MainActivity.class);
 		intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetID);
