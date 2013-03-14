@@ -26,7 +26,7 @@ public class Configure extends ListActivity {
 	private Configure context;
 	private int widgetID;
 	private SortedMap<String, String> appInfo;
-
+// before BIG changes
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
