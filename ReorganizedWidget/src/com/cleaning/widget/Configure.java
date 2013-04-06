@@ -26,7 +26,7 @@ public class Configure extends ListActivity {
 	private Configure context;
 	private int widgetID;
 	private SortedMap<String, String> appInfo;
-// before BIG changes
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -53,44 +53,31 @@ public class Configure extends ListActivity {
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-
-				Log.d("MainActivity", "HEREYOUGO");
 				String chosenAppName = (String) ((TextView) view).getText();
-				System.out.println(chosenAppName);
 				String packegeName = appInfo.get(chosenAppName);
-				System.out.println(appInfo.get(chosenAppName));
-
-				Toast.makeText(getApplicationContext(),
-						((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+				
+//				Toast.makeText(getApplicationContext(),
+//						((TextView) view).getText(), Toast.LENGTH_SHORT).show();
 
 				Intent intent = new Intent(context, MainActivity.class);
 				
 				// Saving to SharedPreferences
 				final String PREFS_NAME = "MyPrefsFile";
 				SharedPreferences.Editor prefs = context.getSharedPreferences(
-						PREFS_NAME, 0).edit();
-				
-//				intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetID);
-				
-				String widgIDstr = Integer.toString(widgetID);
-				intent.putExtra("widgetID", widgIDstr);
-				System.out.println(widgetID + "  " + widgIDstr);
-				prefs.putString(widgIDstr, packegeName);
-				System.out.println("SharedPref !!!!! " + widgIDstr + "  " + packegeName);
+						PREFS_NAME, 0).edit();				
+				prefs.putString("packege", packegeName);
 				prefs.commit();
 				
 
-				PendingIntent pending = PendingIntent.getActivity(context, widgetID,
-						intent, PendingIntent.FLAG_UPDATE_CURRENT);
+				PendingIntent pending = PendingIntent.getActivity(context, 0,
+						intent, 0);
 				views.setOnClickPendingIntent(R.id.imageButton1, pending);
 				widgetManager.updateAppWidget(widgetID, views);
 
 				Intent resultValue = new Intent();
 				resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
 						widgetID);
-				setResult(RESULT_OK, resultValue);
-
-				
+				setResult(RESULT_OK, resultValue);			
 				finish();
 			}
 		});
@@ -110,7 +97,6 @@ public class Configure extends ListActivity {
 			String packegeName = installedPackag.packageName.toString();
 			appsInfoList.put(appName, packegeName);
 			}
-
 		}
 		System.out.println(appsInfoList.size());
 		return appsInfoList;
